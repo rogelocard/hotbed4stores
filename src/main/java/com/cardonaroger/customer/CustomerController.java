@@ -1,12 +1,11 @@
 package com.cardonaroger.customer;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("api/v1/customer")
 public class CustomerController {
 
     private final CustomerService customerService;
@@ -15,9 +14,14 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
-    @RequestMapping(path = "api/v1/customers", method = RequestMethod.GET)
+    @GetMapping
     public List<Customer> getCustomers(){
         return customerService.getAllCustomers();
+    }
+
+    @GetMapping("{id}")
+    public Customer getCustomer(@PathVariable("id") Integer customerId ){
+        return customerService.getCustomer(customerId);
     }
 
 
