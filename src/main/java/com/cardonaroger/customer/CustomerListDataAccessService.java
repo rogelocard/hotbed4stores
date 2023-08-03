@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Repository
-public class CustomerDataAccessService implements CustomerDao {
+@Repository("list")
+public class CustomerListDataAccessService implements CustomerDao {
 
     private static List<Customer> customers;
 
@@ -46,26 +46,32 @@ public class CustomerDataAccessService implements CustomerDao {
 
     @Override
     public void insertCustomer(Customer customer) {
-
+        customers.add(customer);
     }
 
     @Override
     public boolean existsPersonWithEmail(String email) {
-        return false;
+
+        return customers.stream()
+                .anyMatch(c -> c.getEmail().equals(email));
     }
 
     @Override
     public boolean existsPersonWithId(Integer id) {
-        return false;
+        return customers.stream()
+                .anyMatch(c -> c.getId().equals(id));
     }
 
     @Override
     public void deleteCustomer(Integer id) {
-
+        customers.stream()
+                .filter(c -> c.getId().equals(id))
+                .findFirst()
+                .ifPresent(customers::remove);
     }
 
     @Override
     public void updateCustomer(Customer update) {
-
+        customers.add(update);
     }
 }
