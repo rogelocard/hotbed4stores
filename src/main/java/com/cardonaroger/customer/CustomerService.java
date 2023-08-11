@@ -23,7 +23,7 @@ public class CustomerService {
 
     public Customer getCustomer(Long id){
         return customerDao.selectCustomerById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("customer with id [%d] not found".formatted(id)));
+                .orElseThrow(() -> new ResourceNotFoundException("customer con id [%d] no encontrado".formatted(id)));
     }
 
     public void addCustomer(CustomerRegistrationRequest customerRegistrationRequest){
@@ -45,7 +45,7 @@ public class CustomerService {
     public void deleteCustomerById(Long id){
         if (!customerDao.existsPersonWithId(id)){
             throw new ResourceNotFoundException(
-                    "customer with id [%d] not found");
+                    "customer con id [%d] no encontrado");
         }
         customerDao.deleteCustomer(id);
     }
