@@ -1,7 +1,6 @@
 package com.cardonaroger.journey;
 
 import com.cardonaroger.customer.Customer;
-import com.cardonaroger.customer.CustomerController;
 import com.cardonaroger.customer.CustomerRegistrationRequest;
 import com.cardonaroger.customer.CustomerUpdateRequest;
 import com.github.javafaker.Faker;

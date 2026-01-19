@@ -6,6 +6,7 @@ services:
       POSTGRES_USER: amigoscode
       POSTGRES_PASSWORD: password
       PGDATA: /data/postgres
+      POSTGRES_DB: customers
     volumes:
       - postgres:/data/postgres
     ports:
@@ -29,6 +30,20 @@ services:
     restart: unless-stopped
     depends_on:
       - db
+  hotbed4stores-api:
+    container_name: hotbed4stores-api
+    image: rogelocard/hotbed4stores-api
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/customers
+      SPRING_DATASOURCE_USERNAME: amigoscode
+      SPRING_DATASOURCE_PASSWORD: password
+    ports:
+      - "8088:8080"
+    networks:
+      - postgres
+    depends_on:
+      - db
+    restart: unless-stopped
 
 networks:
   postgres:
