@@ -15,6 +15,7 @@ public class Hotbed4storesApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(Hotbed4storesApplication.class, args);
+
 	}
 
 	@Bean
