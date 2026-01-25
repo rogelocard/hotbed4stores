@@ -16,7 +16,7 @@ jobs:
         env:
           POSTGRES_USER: amigoscode
           POSTGRES_PASSWORD: password
-          POSTGRES_DB: customer
+          POSTGRES_DB: customers
         ports:
           - 5332:5432
         options: >-
